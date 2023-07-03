@@ -81,11 +81,11 @@ namespace TrashLang
                 }
 
                 int LoopOps = 0;
-                char PlusOrMinus = '+';
+                char Comma = ',';
 
                 for (int x = CharIndex; x < input.Length; x++)
                 {
-                    if (input[x] == PlusOrMinus)
+                    if (input[x] == Comma)
                     {
                         LoopOps += 1;
                         if (DevMode)
@@ -208,6 +208,12 @@ namespace TrashLang
                         break;
                     case 34:
                         CharToPrint = ' ';
+                        break;
+                    case 35:
+                        CharToPrint = ',';
+                        break;
+                    case 36:
+                        CharToPrint = '.';
                         break;
                 }
 
