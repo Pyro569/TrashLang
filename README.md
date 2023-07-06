@@ -17,7 +17,7 @@ Print Number Example:
 Convert Input to Print Code: `[=.:]`  
 Add Numbers: `&[+++][++++]`  
 Subtract Numbers: `$[+++][++++]`  
-Multiply Numbers: ``[+++][++++]`   
+Multiply Numbers: ``[+++][++++]   
 Divide Numbers: `/[+++][+++]`  
 Comment Denotator: `}`  
 ### This is still a work in progress so expect it to maybe become better and/or more painful in the future
