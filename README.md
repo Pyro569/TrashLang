@@ -14,7 +14,7 @@ Hello World:
 Input:
 [&^#]  
 Print Recent Input:  
-[|\/]  
+[|\\/]  
 Print Number Example:  
 [+++] (Prints 3)
 [+++++][++++++][++++] (Prints 564)
