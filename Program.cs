@@ -24,7 +24,9 @@ namespace TrashLang
             '=', //print input as print command char one
             '.', //print input as print command char two
             ':', //print input as print command char three
-            '&' //character to add numbers
+            '&', //character to add numbers
+            '$', //character to subtract numbers
+            '}' //comment key, no idea why there should be a comment key but whatever
         };
 
         public static bool DevMode = false;
@@ -75,15 +77,34 @@ namespace TrashLang
                         CheckBracketCommand(input, charIndex);
                         break;
                     case '&':
-                        AddNumbers(input, charIndex);
-                        charIndex = input.Length + 1;
+                        NumbersOps(input, charIndex, 0);
+                        charIndex = input.Length + 1; //skip the rest of the line
+                        break;
+                    case '$':
+                        NumbersOps(input, charIndex, 1);
+                        charIndex = input.Length + 1; //skip the rest of the line
+                        break;
+                    case '/':
+                        NumbersOps(input, charIndex, 3);
+                        charIndex = input.Length + 1; //skip the rest of the line
+                        break;
+                    case '`':
+                        NumbersOps(input, charIndex, 2);
+                        charIndex = input.Length + 1; //skip the rest of the line
+                        break;
+                    case '}':
+                        charIndex = input.Length + 1; //skip the rest of the line
+                        break;
+                    default:
+                        System.Console.Write("Error in code");
+                        charIndex = input.Length + 1; //skip the rest of the line
                         break;
                 }
             }
             System.Console.Write("\n");
         }
 
-        public static void AddNumbers(string input, int CharIndex)
+        public static void NumbersOps(string input, int CharIndex, int op)
         {
             if(input[CharIndex+1] == '[')
             {
@@ -118,7 +139,24 @@ namespace TrashLang
                     }
                 }
                 NumTwo = LoopOps;
-                System.Console.Write(NumOne + NumTwo);
+                switch (op)
+                {
+                    case 0:
+                        System.Console.Write(NumOne + NumTwo);
+                        break;
+                    case 1:
+                        System.Console.Write(NumOne - NumTwo);
+                        break;
+                    case 2:
+                        System.Console.Write(NumOne * NumTwo);
+                        break;
+                    case 3:
+                        System.Console.Write(NumOne / NumTwo);
+                        break;
+                    default:
+                        System.Console.Write("Error on the backend, this is not your fault!");
+                        break;
+                }
             }
         }
 
@@ -155,92 +193,130 @@ namespace TrashLang
                         string Cin = System.Console.ReadLine();
                         for(int i=0;i<Cin.Length; i++)
                         {
-                            Console.Write("%?");
+                            string StringToPrint = "";
+                            string NumToPrint = "";
                             switch (Cin[i])
                             {
                                 case 'a':
-                                    PrintCommas(1);
+                                    StringToPrint = PrintCommas(1);
                                     break;
                                 case 'b':
-                                    PrintCommas(2);
+                                    StringToPrint = PrintCommas(2);
                                     break;
                                 case 'c':
-                                    PrintCommas(3);
+                                    StringToPrint = PrintCommas(3);
                                     break;
                                 case 'd':
-                                    PrintCommas(4);
+                                    StringToPrint = PrintCommas(4);
                                     break;
                                 case 'e':
-                                    PrintCommas(5);
+                                    StringToPrint = PrintCommas(5);
                                     break;
                                 case 'f':
-                                    PrintCommas(6);
+                                    StringToPrint = PrintCommas(6);
                                     break;
                                 case 'g':
-                                    PrintCommas(7);
+                                    StringToPrint = PrintCommas(7);
                                     break;
                                 case 'h':
-                                    PrintCommas(8);
+                                    StringToPrint = PrintCommas(8);
                                     break;
                                 case 'i':
-                                    PrintCommas(9);
+                                    StringToPrint = PrintCommas(9);
                                     break;
                                 case 'j':
-                                    PrintCommas(10);
+                                    StringToPrint = PrintCommas(10);
                                     break;
                                 case 'k':
-                                    PrintCommas(11);
+                                    StringToPrint = PrintCommas(11);
                                     break;
                                 case 'l':
-                                    PrintCommas(12);
+                                    StringToPrint = PrintCommas(12);
                                     break;
                                 case 'm':
-                                    PrintCommas(13);
+                                    StringToPrint = PrintCommas(13);
                                     break;
                                 case 'n':
-                                    PrintCommas(14);
+                                    StringToPrint = PrintCommas(14);
                                     break;
                                 case 'o':
-                                    PrintCommas(15);
+                                    StringToPrint = PrintCommas(15);
                                     break;
                                 case 'p':
-                                    PrintCommas(16);
+                                    StringToPrint = PrintCommas(16);
                                     break;
                                 case 'q':
-                                    PrintCommas(17);
+                                    StringToPrint = PrintCommas(17);
                                     break;
                                 case 'r':
-                                    PrintCommas(18);
+                                    StringToPrint = PrintCommas(18);
                                     break;
                                 case 's':
-                                    PrintCommas(19);
+                                    StringToPrint = PrintCommas(19);
                                     break;
                                 case 't':
-                                    PrintCommas(20);
+                                    StringToPrint = PrintCommas(20);
                                     break;
                                 case 'u':
-                                    PrintCommas(21);
+                                    StringToPrint = PrintCommas(21);
                                     break;
                                 case 'v':
-                                    PrintCommas(22);
+                                    StringToPrint = PrintCommas(22);
                                     break;
                                 case 'w':
-                                    PrintCommas(23);
+                                    StringToPrint = PrintCommas(23);
                                     break;
                                 case 'x':
-                                    PrintCommas(24);
+                                    StringToPrint = PrintCommas(24);
                                     break;
                                 case 'y':
-                                    PrintCommas(25);
+                                    StringToPrint = PrintCommas(25);
                                     break;
                                 case 'z':
-                                    PrintCommas(26);
+                                    StringToPrint = PrintCommas(26);
                                     break;
                                 case ' ':
-                                    PrintCommas(34);
+                                    StringToPrint = PrintCommas(34);
+                                    break;
+                                case '0':
+                                    NumToPrint = WriteNumber(0);
+                                    break;
+                                case '1':
+                                    NumToPrint = WriteNumber(1);
+                                    break;
+                                case '2':
+                                    NumToPrint = WriteNumber(2);
+                                    break;
+                                case '3':
+                                    NumToPrint = WriteNumber(3);
+                                    break;
+                                case '4':
+                                    NumToPrint = WriteNumber(4);
+                                    break;
+                                case '5':
+                                    NumToPrint = WriteNumber(5);
+                                    break;
+                                case '6':
+                                    NumToPrint = WriteNumber(6);
+                                    break;
+                                case '7':
+                                    NumToPrint = WriteNumber(7);
+                                    break;
+                                case '8':
+                                    NumToPrint = WriteNumber(8);
+                                    break;
+                                case '9':
+                                    NumToPrint = WriteNumber(9);
                                     break;
                             }
-                            Console.Write(">");
+                            if(StringToPrint != "")
+                            {
+                                Console.Write("%?" + StringToPrint + ">");
+                            }
+                            else
+                            {
+                                Console.Write(NumToPrint);
+                            }
                         }
                     }
                 }
@@ -462,12 +538,25 @@ namespace TrashLang
                 Console.WriteLine("Error in code");
             }
         }
-        public static void PrintCommas(int amount)
+        static string PrintCommas(int amount)
         {
+            string ReturnValue = "";
             for(int i=0; i<amount; i++)
             {
-                System.Console.Write(",");
+                ReturnValue += ",";
             }
+            return ReturnValue;
+        }
+
+        static string WriteNumber(int number)
+        {
+            string ReturnValue = "[";
+            for(int i=0; i<number; i++)
+            {
+                ReturnValue += "+";
+            }
+            ReturnValue += "]";
+            return ReturnValue;
         }
     }
 }
