@@ -95,10 +95,6 @@ namespace TrashLang
                     case '}':
                         charIndex = input.Length + 1; //skip the rest of the line
                         break;
-                    default:
-                        System.Console.Write("Error in code");
-                        charIndex = input.Length + 1; //skip the rest of the line
-                        break;
                 }
             }
             System.Console.Write("\n");
