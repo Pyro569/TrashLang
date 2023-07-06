@@ -2,8 +2,7 @@
 BrainF like language that I made for absolutely no specific reason at all.  
 Commands (Currently Implemented):  
 "%" Write  
-"?" Denote Loop  
-"+" Loop++  
+"?" Denote Loop   
 ">" End Loop  
 "*" Print New Line  
 "," Print Character Iterator
