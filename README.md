@@ -15,4 +15,5 @@ Print Number Example:
 `[+++]` (Prints 3)  
 `[+++++][++++++][++++]` (Prints 564)  
 Convert Input to Print Code (Works on Strings only atm): `[=.:]`  
+Add Numbers: `&[+++][++++]`  
 ### This is still a work in progress so expect it to maybe become better and/or more painful in the future
