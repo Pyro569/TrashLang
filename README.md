@@ -6,7 +6,16 @@ Commands (Currently Implemented):
 "+" Loop++  
 ">" End Loop  
 "*" Print New Line  
+"," Print Character Iterator
 
 Hello World:  
 %?,,,,,,,,>%?,,,,,>%?,,,,,,,,,,,,>%?,,,,,,,,,,,,>%?,,,,,,,,,,,,,,,>%?,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,>%?,,,,,,,,,,,,,,,,,,,,,,,>%?,,,,,,,,,,,,,,,>%?,,,,,,,,,,,,,,,,,,>%?,,,,,,,,,,,,>%?,,,,>  
+
+Input:
+[&^#]  
+Print Recent Input:  
+[|\/]  
+Print Number Example:  
+[+++] (Prints 3)
+[+++++][++++++][++++] (Prints 564)
 ### This is still a work in progress so expect it to maybe become better and/or more painful in the future
