@@ -24,6 +24,7 @@ namespace TrashLang
             '=', //print input as print command char one
             '.', //print input as print command char two
             ':', //print input as print command char three
+            '&' //character to add numbers
         };
 
         public static bool DevMode = false;
@@ -73,9 +74,52 @@ namespace TrashLang
                     case '[':
                         CheckBracketCommand(input, charIndex);
                         break;
+                    case '&':
+                        AddNumbers(input, charIndex);
+                        charIndex = input.Length + 1;
+                        break;
                 }
             }
             System.Console.Write("\n");
+        }
+
+        public static void AddNumbers(string input, int CharIndex)
+        {
+            if(input[CharIndex+1] == '[')
+            {
+                int NumOne = 0;
+                int NumTwo = 0;
+                int LoopOps = 0;
+                int StopPoint = 0;
+
+                for (int i=2; i<input.Length; i++)
+                {
+                    if(input[i] == '+')
+                    {
+                        LoopOps += 1;
+                    }
+                    if (input[i] == ']')
+                    {
+                        StopPoint = i;
+                        break;
+                    }
+                }
+                NumOne = LoopOps;
+                LoopOps = 0;
+                for (int i = StopPoint+1; i < input.Length; i++)
+                {
+                    if (input[i] == '+')
+                    {
+                        LoopOps += 1;
+                    }
+                    if (input[i] == ']')
+                    {
+                        break;
+                    }
+                }
+                NumTwo = LoopOps;
+                System.Console.Write(NumOne + NumTwo);
+            }
         }
 
         public static void CheckBracketCommand(string input, int CharIndex)
