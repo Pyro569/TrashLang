@@ -5,17 +5,27 @@ namespace TrashLang
 {
     class MainClass
     {
-        public static List<char> commands = new List<char>()
+        public static List<char> commands = new List<char>() //code doesnt even use this list at all but whatever i dont care
         {
             '?', //start loop
             '>', //end loop
-            '+', //loop++
-            '-', //loop--
+            ',', //loop++
+            '+', //print numbers
             '%', //write
-            '*' //print new line
+            '*', //print new line
+            '[', //input char one
+            '&', //input char two
+            '^', //input char three
+            '#', //input char four
+            ']', //input char five
+            '|', //print recent console input char one([|\/])
+            '\\', //print recent console input char two
+            '/' //print recent console input char three
         };
 
         public static bool DevMode = false;
+
+        public static string Cin;
 
         public static void Main(string[] args)
         {
@@ -31,7 +41,6 @@ namespace TrashLang
                     }
                     catch
                     {
-                        DevMode = true;
                         System.Console.WriteLine("Some kind of error has happened in entering dev mode");
                     }
                 }
@@ -55,20 +64,90 @@ namespace TrashLang
                     case '%': //if this character is detected start the "write" function
                         MakeWrite(input, charIndex);
                         break;
-                    case '?':
-                        break;
-                    case '+':
-                        break;
-                    case '-':
-                        break;
-                    case '>':
-                        break;
                     case '*':
                         System.Console.Write("\n");
+                        break;
+                    case '[':
+                        CheckBracketCommand(input, charIndex);
                         break;
                 }
             }
             System.Console.Write("\n");
+        }
+
+        public static void CheckBracketCommand(string input, int CharIndex)
+        {
+            switch (input[CharIndex + 1])
+            {
+                case '&':
+                    GetInput(input, CharIndex);
+                    break;
+                case '|':
+                    PrintMostRecentCin(input, CharIndex);
+                    break;
+                case '+':
+                    PrintNumber(input, CharIndex);
+                    break;
+                default:
+                    System.Console.WriteLine("Error in code");
+                    break;
+            }
+        }
+
+        public static void PrintNumber(string input, int CharIndex)
+        {
+            char Plus = '+';
+            int PlusOps = 0;
+
+            for(int x = CharIndex; x < input.Length; x++)
+            {
+                if(input[x] == Plus)
+                {
+                    PlusOps += 1;
+                }
+                else if(input[x] == ']')
+                {
+                    if (DevMode) { System.Console.WriteLine("Detected right bracket"); }
+                    break;
+                }
+            }
+            System.Console.Write(PlusOps);
+        }
+
+        public static void PrintMostRecentCin(string input, int CharIndex)
+        {
+            if(input[CharIndex + 2] == '\\')
+            {
+                if(input[CharIndex + 3] == '/')
+                {
+                    if(input[CharIndex + 4] == ']')
+                    {
+                        System.Console.WriteLine();
+                        if (DevMode) { System.Console.WriteLine("Detected print recent input"); }
+                        if(Cin != null)
+                        {
+                            System.Console.WriteLine(Cin);
+                        }
+                    }
+                }
+            }
+        }
+
+        public static void GetInput(string input, int CharIndex)
+        {
+            if (input[CharIndex + 2] == '^')
+            {
+                if (input[CharIndex + 3] == '#')
+                {
+                    if (input[CharIndex + 4] == ']')
+                    {
+                        System.Console.WriteLine();
+                        if (DevMode) { System.Console.WriteLine("Detected input statement"); }
+                        Cin = System.Console.ReadLine();
+                    }
+                }
+            }
+
         }
 
         public static void MakeWrite(string input, int CharIndex)
@@ -215,8 +294,10 @@ namespace TrashLang
                     case 36:
                         CharToPrint = '.';
                         break;
+                    case 37:
+                        CharToPrint = '\n';
+                        break;
                 }
-
                 System.Console.Write(Convert.ToString(CharToPrint));
             }
             else
