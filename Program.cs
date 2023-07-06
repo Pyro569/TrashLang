@@ -20,7 +20,10 @@ namespace TrashLang
             ']', //input char five
             '|', //print recent console input char one([|\/])
             '\\', //print recent console input char two
-            '/' //print recent console input char three
+            '/', //print recent console input char three
+            '=', //print input as print command char one
+            '.', //print input as print command char two
+            ':', //print input as print command char three
         };
 
         public static bool DevMode = false;
@@ -88,9 +91,119 @@ namespace TrashLang
                 case '+':
                     PrintNumber(input, CharIndex);
                     break;
+                case '=':
+                    PrintInputAsPrintCommand(input, CharIndex);
+                    break;
                 default:
                     System.Console.WriteLine("Error in code");
                     break;
+            }
+        }
+
+        public static void PrintInputAsPrintCommand(string input, int CharIndex)
+        {
+            if(input[CharIndex + 2] == '.')
+            {
+                if(input[CharIndex + 3] == ':')
+                {
+                    if (input[CharIndex + 4] == ']')
+                    {
+                        string Cin = System.Console.ReadLine();
+                        for(int i=0;i<Cin.Length; i++)
+                        {
+                            Console.Write("%?");
+                            switch (Cin[i])
+                            {
+                                case 'a':
+                                    PrintCommas(1);
+                                    break;
+                                case 'b':
+                                    PrintCommas(2);
+                                    break;
+                                case 'c':
+                                    PrintCommas(3);
+                                    break;
+                                case 'd':
+                                    PrintCommas(4);
+                                    break;
+                                case 'e':
+                                    PrintCommas(5);
+                                    break;
+                                case 'f':
+                                    PrintCommas(6);
+                                    break;
+                                case 'g':
+                                    PrintCommas(7);
+                                    break;
+                                case 'h':
+                                    PrintCommas(8);
+                                    break;
+                                case 'i':
+                                    PrintCommas(9);
+                                    break;
+                                case 'j':
+                                    PrintCommas(10);
+                                    break;
+                                case 'k':
+                                    PrintCommas(11);
+                                    break;
+                                case 'l':
+                                    PrintCommas(12);
+                                    break;
+                                case 'm':
+                                    PrintCommas(13);
+                                    break;
+                                case 'n':
+                                    PrintCommas(14);
+                                    break;
+                                case 'o':
+                                    PrintCommas(15);
+                                    break;
+                                case 'p':
+                                    PrintCommas(16);
+                                    break;
+                                case 'q':
+                                    PrintCommas(17);
+                                    break;
+                                case 'r':
+                                    PrintCommas(18);
+                                    break;
+                                case 's':
+                                    PrintCommas(19);
+                                    break;
+                                case 't':
+                                    PrintCommas(20);
+                                    break;
+                                case 'u':
+                                    PrintCommas(21);
+                                    break;
+                                case 'v':
+                                    PrintCommas(22);
+                                    break;
+                                case 'w':
+                                    PrintCommas(23);
+                                    break;
+                                case 'x':
+                                    PrintCommas(24);
+                                    break;
+                                case 'y':
+                                    PrintCommas(25);
+                                    break;
+                                case 'z':
+                                    PrintCommas(26);
+                                    break;
+                                case ' ':
+                                    PrintCommas(34);
+                                    break;
+                            }
+                            Console.Write(">");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error in code");
             }
         }
 
@@ -303,6 +416,13 @@ namespace TrashLang
             else
             {
                 Console.WriteLine("Error in code");
+            }
+        }
+        public static void PrintCommas(int amount)
+        {
+            for(int i=0; i<amount; i++)
+            {
+                System.Console.Write(",");
             }
         }
     }
