@@ -440,7 +440,7 @@ namespace TrashLang
         static string WriteNumber(int number)
         {
             string ReturnValue = "[";
-            for(int i=0; i<number; i++)
+            for(int i=0; i< number; i++)
             {
                 ReturnValue += "+";
             }
